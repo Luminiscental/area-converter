@@ -22,10 +22,11 @@ I think the new area is:
 
 ## installation
 
-To build, first clone the repository:
+To build, first clone and enter the repository:
 
 ```
 $ git clone https://github.com/Luminiscental/area-converter
+$ cd area-converter
 ```
 
 The project uses [stack](https://docs.haskellstack.org/en/stable/README/), so you will need that to compile from source:
