@@ -12,4 +12,4 @@ main = do
     newFullArea <- getInput
     let newArea = convertArea oldFullArea newFullArea oldArea
     putStrLn "I think the new area is:"
-    printArea newArea
+    print newArea
