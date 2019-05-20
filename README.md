@@ -21,3 +21,13 @@ enter the dimensions as <left value> <top value> <right value> <bottom value>
 I think the new area is:
 (left, top) -> (right, bottom) : (58.854167, 930.555556) -> (468.750000, 305.555556)
 ```
+
+## installation
+
+Either use a released binary, or build yourself, either using `stack install` if you have stack installed, or run `Setup.hs`:
+
+```
+$ cd path/to/source
+$ runhaskell Setup.hs build
+$ runhaskell Setup.hs install
+```
