@@ -26,7 +26,7 @@ Either use a released binary, or build yourself, either using `stack install` if
 
 ```
 $ cd path/to/source
-$ runhaskell Setup.hs configure --user
+$ runhaskell Setup.hs configure --ghc
 $ runhaskell Setup.hs build
 $ runhaskell Setup.hs install
 ```
