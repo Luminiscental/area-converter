@@ -20,5 +20,4 @@ enter the dimensions as <left value> <top value> <right value> <bottom value>
 0 1000 1000 0
 I think the new area is:
 (left, top) -> (right, bottom) : (58.854167, 930.555556) -> (468.750000, 305.555556)
-$ 
 ```
