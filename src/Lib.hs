@@ -1,5 +1,6 @@
 module Lib
-    ( Area
+    ( Area (Area)
+    , Pair (Pair)
     , getInput
     , convertArea
     )
@@ -14,12 +15,18 @@ data Area = Area Pair Pair
 instance Show Pair where
     show (Pair x y) = printf "(%.6f, %.6f)" x y
 
+instance Eq Pair where
+    (Pair x1 y1) == (Pair x2 y2) = x1 == x2 && y1 == y2
+
 instance Show Area where
     show (Area offset dims) =
         "(left, top) -> (right, bottom) : "
             ++ show offset
             ++ " -> "
             ++ (show . addPairs dims $ offset)
+
+instance Eq Area where
+    (Area o1 d1) == (Area o2 d2) = o1 == o2 && d1 == d2
 
 getScale :: Pair -> Pair -> Pair
 getScale (Pair oldWidth oldHeight) (Pair newWidth newHeight) =
