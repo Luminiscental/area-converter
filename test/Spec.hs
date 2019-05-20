@@ -14,15 +14,13 @@ flipTest = TestCase
                     returnedNewArea
     )
 
--- TODO: Why does this fail?
 inlineTest = TestCase
     (do
         let oldFullArea     = Area (Pair 2 3) (Pair 110 (-100))
             oldArea         = Area (Pair 6 (-1)) (Pair 50 (-20))
             newFullArea     = Area (Pair 0 1) (Pair 50 60)
             expectedNewArea = Area
-                (Pair (0 + (6 - 2) * 50 / 110) (1 + ((-1) - 3) * (-20) / (-100))
-                )
+                (Pair (0 + (6 - 2) * 50 / 110) (1 + ((-1) - 3) * 60 / (-100)))
                 (Pair (50 * 50 / 110) ((-20) * 60 / (-100)))
             returnedNewArea = convertArea oldFullArea newFullArea oldArea
         assertEqual "convertArea equals the inline formula"

@@ -1,6 +1,6 @@
 module Lib
-    ( Area (Area)
-    , Pair (Pair)
+    ( Area(Area)
+    , Pair(Pair)
     , getInput
     , convertArea
     )
