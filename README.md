@@ -4,7 +4,7 @@ Small cli utility for converting drawing tablet areas, e.g. for when changing dr
 
 ## usage
 
-Once built as `area-converter` the executable can be used without any parameters; any input is asked for at runtime.
+Once installed as `area-converter`, the executable can be used without any parameters; any input is asked for at runtime.
 For example:
 
 ```
@@ -22,11 +22,26 @@ I think the new area is:
 
 ## installation
 
-Either use a released binary, or build yourself, either using `stack install` if you have stack installed, or run `Setup.hs`:
+To build, first clone the repository:
 
 ```
-$ cd path/to/source
-$ runhaskell Setup.hs configure --ghc
-$ runhaskell Setup.hs build
-$ runhaskell Setup.hs install
+$ git clone https://github.com/Luminiscental/area-converter
+```
+
+The project uses [stack](https://docs.haskellstack.org/en/stable/README/), so you will need that to compile from source:
+
+```
+$ stack build
+```
+
+After the executable has been built you can run it in the source directory:
+
+```
+$ stack run
+```
+
+Or install it:
+
+```
+$ stack install
 ```
