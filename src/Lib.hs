@@ -69,7 +69,6 @@ printArea (offset, dims) =
         ++ " -> "
         ++ (show . addDimsToOffset dims $ offset)
 
--- TODO: This is broken for some cases where the direction changes
 convertArea
     :: (Offset, Dims) -> (Offset, Dims) -> (Offset, Dims) -> (Offset, Dims)
 convertArea (oldBaseOffset, oldBaseDims) (newBaseOffset, newBaseDims) (oldOffset, oldDims)

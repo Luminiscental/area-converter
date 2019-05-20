@@ -14,11 +14,11 @@ enter the dimensions as <left value> <top value> <right value> <bottom value>
 0 0 1920 720
 Please enter the old area:
 enter the dimensions as <left value> <top value> <right value> <bottom value>
-113 50 800 900
+113 50 900 500
 Please enter the new full area:
 enter the dimensions as <left value> <top value> <right value> <bottom value>
 0 1000 1000 0
 I think the new area is:
-(left, top) -> (right, bottom) : (58.854167, 930.555556) -> (416.666667, -250.000000)
+(left, top) -> (right, bottom) : (58.854167, 930.555556) -> (468.750000, 305.555556)
 $ 
 ```
