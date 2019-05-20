@@ -1,11 +1,13 @@
 module Lib
     ( Area(Area)
     , Pair(Pair)
-    , getInput
+    , getAreaInput
     , convertArea
+    , inputPrompt
     )
 where
 
+import           System.IO
 import           Data.List
 import           Text.Printf
 
@@ -34,19 +36,23 @@ getScale (Pair oldWidth oldHeight) (Pair newWidth newHeight) =
         heightScale = newHeight / oldHeight
     in  Pair widthScale heightScale
 
-getInput :: IO Area
-getInput = do
-    putStrLn
-        "enter the dimensions as <left value> <top value> <right value> <bottom value>"
+getAreaInput :: IO Area
+getAreaInput = do
     inputLine <- getLine
     let inputWords = words inputLine
     if length inputWords /= 4
         then do
             putStrLn "that wasn't 4 values!"
-            getInput
+            getAreaInput
         else do
             let [left, top, right, bottom] = map read inputWords
             return $ Area (Pair left top) (Pair (right - left) (bottom - top))
+
+inputPrompt :: String -> IO ()
+inputPrompt msg = do
+    putStrLn msg
+    putStr "> "
+    hFlush stdout
 
 scalePairs :: Pair -> Pair -> Pair
 scalePairs (Pair x1 y1) (Pair x2 y2) = Pair (x1 * x2) (y1 * y2)
