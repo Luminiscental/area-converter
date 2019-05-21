@@ -46,9 +46,9 @@ getAreaInput = do
             putStrLn "Please give 4 values, they can't contain spaces"
             getAreaInput
         else
-            let readWords  = map readMaybe inputWords
-                maybeWords = sequence readWords
-            in  case maybeWords of
+            let wordList = mapM readMaybe inputWords
+            in
+                case wordList of
                     Just [left, top, right, bottom] -> return $ Area
                         (Pair left top)
                         (Pair (right - left) (bottom - top))
