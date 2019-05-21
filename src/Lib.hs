@@ -3,13 +3,14 @@ module Lib
     , Pair(Pair)
     , getAreaInput
     , convertArea
-    , inputPrompt
     )
 where
 
 import           System.IO
 import           Data.List
 import           Text.Printf
+import           Text.Read
+import           Control.Monad
 
 data Pair = Pair Double Double
 data Area = Area Pair Pair
@@ -30,32 +31,40 @@ instance Show Area where
 instance Eq Area where
     (Area o1 d1) == (Area o2 d2) = o1 == o2 && d1 == d2
 
+promptInputLine :: IO String
+promptInputLine = do
+    putStr "> "
+    hFlush stdout
+    getLine
+
+getAreaInput :: IO Area
+getAreaInput = do
+    inputLine <- promptInputLine
+    let inputWords = words inputLine
+    if length inputWords /= 4
+        then do
+            putStrLn "Please give 4 values, they can't contain spaces"
+            getAreaInput
+        else
+            let readWords  = map readMaybe inputWords
+                maybeWords = sequence readWords
+            in  case maybeWords of
+                    Just [left, top, right, bottom] -> return $ Area
+                        (Pair left top)
+                        (Pair (right - left) (bottom - top))
+                    Nothing -> do
+                        putStrLn
+                            "I couldn't interpret all those values as numbers"
+                        getAreaInput
+
+scalePairs :: Pair -> Pair -> Pair
+scalePairs (Pair x1 y1) (Pair x2 y2) = Pair (x1 * x2) (y1 * y2)
+
 getScale :: Pair -> Pair -> Pair
 getScale (Pair oldWidth oldHeight) (Pair newWidth newHeight) =
     let widthScale  = newWidth / oldWidth
         heightScale = newHeight / oldHeight
     in  Pair widthScale heightScale
-
-getAreaInput :: IO Area
-getAreaInput = do
-    inputLine <- getLine
-    let inputWords = words inputLine
-    if length inputWords /= 4
-        then do
-            putStrLn "that wasn't 4 values!"
-            getAreaInput
-        else do
-            let [left, top, right, bottom] = map read inputWords
-            return $ Area (Pair left top) (Pair (right - left) (bottom - top))
-
-inputPrompt :: String -> IO ()
-inputPrompt msg = do
-    putStrLn msg
-    putStr "> "
-    hFlush stdout
-
-scalePairs :: Pair -> Pair -> Pair
-scalePairs (Pair x1 y1) (Pair x2 y2) = Pair (x1 * x2) (y1 * y2)
 
 addPairs :: Pair -> Pair -> Pair
 addPairs (Pair x1 y1) (Pair x2 y2) = Pair (x1 + x2) (y1 + y2)
