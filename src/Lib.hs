@@ -7,19 +7,16 @@ module Lib
 where
 
 import           System.IO
-import           Data.List
 import           Text.Printf
 import           Text.Read
-import           Control.Monad
 
 data Pair = Pair Double Double
+    deriving (Eq)
 data Area = Area Pair Pair
+    deriving (Eq)
 
 instance Show Pair where
     show (Pair x y) = printf "(%.6f, %.6f)" x y
-
-instance Eq Pair where
-    (Pair x1 y1) == (Pair x2 y2) = x1 == x2 && y1 == y2
 
 instance Show Area where
     show (Area offset dims) =
@@ -27,9 +24,6 @@ instance Show Area where
             ++ show offset
             ++ " -> "
             ++ (show . addPairs dims $ offset)
-
-instance Eq Area where
-    (Area o1 d1) == (Area o2 d2) = o1 == o2 && d1 == d2
 
 promptInputLine :: IO String
 promptInputLine = do
@@ -52,6 +46,7 @@ getAreaInput = do
                     Just [left, top, right, bottom] -> return $ Area
                         (Pair left top)
                         (Pair (right - left) (bottom - top))
+                    Just _  -> error "Length check failed"
                     Nothing -> do
                         putStrLn
                             "I couldn't interpret all those values as numbers"
