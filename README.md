@@ -9,15 +9,22 @@ For example:
 
 ```
 $ area-converter
-Area values are taken as <left value> <top value> <right value> <bottom value>
-Please enter the old full area:
-> 0 0 1920 720
-Please enter the old area:
-> 113 50 900 500
-Please enter the new full area:
-> 0 1000 1000 0
-I think the new area is:
-(left, top) -> (right, bottom) : (58.854167, 930.555556) -> (468.750000, 305.555556)
+What command would you like to run? (type "quit" to exit, "help" to display supported commands)
+> convertArea
+Please enter the old full area values
+<left value> <top value> <right value> <bottom value>:
+> 0 0 1000 1000
+Please enter the old desired area values
+<left value> <top value> <right value> <bottom value>:
+> 23 27 720 410
+Please enter the new full area values
+<left value> <top value> <right value> <bottom value>:
+> 0 800 600 0
+I think the new desired area is:
+(left, top) -> (right, bottom) : (23.000000, 333.400000) -> (441.200000, 27.000000)
+What command would you like to run? (type "quit" to exit, "help" to display supported commands)
+> quit
+$
 ```
 
 ## installation

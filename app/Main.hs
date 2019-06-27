@@ -1,17 +1,23 @@
 module Main where
 
 import           Lib
+import           System.Environment             ( getArgs )
+import           Control.Monad                  ( when )
 
 main :: IO ()
 main = do
-    putStrLn
-        "Area values are taken as <left value> <top value> <right value> <bottom value>"
-    putStrLn "Please enter the old full area"
-    oldFullArea <- getAreaInput
-    putStrLn "Please enter the old area"
-    oldArea <- getAreaInput
-    putStrLn "Please enter the new full area"
-    newFullArea <- getAreaInput
-    let newArea = convertArea oldFullArea newFullArea oldArea
-    putStrLn "I think the new area is"
-    print newArea
+    args <- getArgs
+    if not . null $ args then displayCommands else run
+  where
+    run = do
+        putStrLn
+            "What command would you like to run? (type \"quit\" to exit, \"help\" to display supported commands)"
+        command <- promptInputLine
+        case command of
+            "quit" -> return ()
+            "help" -> displayCommands
+            _      -> case getCommand command of
+                Just c -> runCommand c
+                Nothing ->
+                    putStrLn $ "Couldn't find command \"" ++ command ++ "\""
+        when (command /= "quit") run
